@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+# ################################################################################
+#  EB Manager (ebm)
+#  Ming LAM, M Innovations, 2013
+# ################################################################################
+
+EBM_VERSION = '2.0.0'
+EBM_ROOT = File.symlink?(__FILE__) ? File.dirname(File.readlink(__FILE__)) : File.dirname(__FILE__)
+EBM_LIB_DIR = File.join(EBM_ROOT, 'lib')
+APP_ROOT = Dir.pwd
+$verbose = false
+
+require 'fileutils'
+require 'optparse'
+require 'pathname'
+require 'tmpdir'
+require 'yaml'
+
+require 'rubygems'
+require 'aws-sdk'
+
+Dir[File.join(EBM_LIB_DIR, '*.rb')].each { |file| load file }
+
+
+# Main
+# Create a new configuration, loading all user-defined parameters from the various sources into it
+configuration = Configuration.new
+
+# Run EB task per configuration
+task = Task.new(configuration)
+task.send(configuration.command_opts[:task])
+task.cleanup
+
+exit

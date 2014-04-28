@@ -1,0 +1,15 @@
+all:
+  app: app
+  solution_stack: 32bit Amazon Linux running Ruby 1.9.3
+  source_bundle_bucket: bucket
+  source_bundle_key_prefix: eb/source_bundle
+  bundle_cache_bucket: bucket
+  bundle_cache_key_prefix: eb/bundle_cache
+
+staging:
+  env: app-staging
+  cname_prefix: app-staging
+
+production:
+  env: app-production
+  cname_prefix: app-production

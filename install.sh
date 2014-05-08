@@ -2,7 +2,7 @@
 set -e
 
 PROG_NAME="EB Manager"
-INSTALL_DIR=/opt/ebmanager
+INSTALL_DIR=/usr/local/ebmanager
 EXECUTABLES="ebm"
 SYSTEM_BIN_DIR=/usr/local/bin
 
